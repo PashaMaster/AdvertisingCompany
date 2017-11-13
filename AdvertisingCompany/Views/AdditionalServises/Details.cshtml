@@ -1,0 +1,30 @@
+﻿@model AdvertisingCompany.Models.AdditionalServise
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>AdditionalServise</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NameAdditionalServise)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NameAdditionalServise)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DiscriptionAdditionalServise)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DiscriptionAdditionalServise)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.AdditionalServiseID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

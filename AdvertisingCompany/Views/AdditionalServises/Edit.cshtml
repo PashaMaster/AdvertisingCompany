@@ -1,0 +1,39 @@
+﻿@model AdvertisingCompany.Models.AdditionalServise
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>AdditionalServise</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="AdditionalServiseID" />
+            <div class="form-group">
+                <label asp-for="NameAdditionalServise" class="control-label"></label>
+                <input asp-for="NameAdditionalServise" class="form-control" />
+                <span asp-validation-for="NameAdditionalServise" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DiscriptionAdditionalServise" class="control-label"></label>
+                <input asp-for="DiscriptionAdditionalServise" class="form-control" />
+                <span asp-validation-for="DiscriptionAdditionalServise" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

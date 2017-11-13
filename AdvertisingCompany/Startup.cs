@@ -25,6 +25,7 @@ namespace AdvertisingCompany
         {
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<OrderContext>(options => options.UseSqlServer(connection));
+
             services.AddMvc();
         }
 
