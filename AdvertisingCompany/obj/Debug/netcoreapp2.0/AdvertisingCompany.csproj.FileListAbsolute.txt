@@ -1,0 +1,11 @@
+D:\GSTU\kurs_3\semestr_5\РПБДИС\kursach\AdvertisingCompany\AdvertisingCompany\bin\Debug\netcoreapp2.0\AdvertisingCompany.deps.json
+D:\GSTU\kurs_3\semestr_5\РПБДИС\kursach\AdvertisingCompany\AdvertisingCompany\bin\Debug\netcoreapp2.0\AdvertisingCompany.runtimeconfig.json
+D:\GSTU\kurs_3\semestr_5\РПБДИС\kursach\AdvertisingCompany\AdvertisingCompany\bin\Debug\netcoreapp2.0\AdvertisingCompany.runtimeconfig.dev.json
+D:\GSTU\kurs_3\semestr_5\РПБДИС\kursach\AdvertisingCompany\AdvertisingCompany\bin\Debug\netcoreapp2.0\AdvertisingCompany.dll
+D:\GSTU\kurs_3\semestr_5\РПБДИС\kursach\AdvertisingCompany\AdvertisingCompany\bin\Debug\netcoreapp2.0\AdvertisingCompany.pdb
+D:\GSTU\kurs_3\semestr_5\РПБДИС\kursach\AdvertisingCompany\AdvertisingCompany\obj\Debug\netcoreapp2.0\AdvertisingCompany.csprojResolveAssemblyReference.cache
+D:\GSTU\kurs_3\semestr_5\РПБДИС\kursach\AdvertisingCompany\AdvertisingCompany\obj\Debug\netcoreapp2.0\AdvertisingCompany.csproj.CoreCompileInputs.cache
+D:\GSTU\kurs_3\semestr_5\РПБДИС\kursach\AdvertisingCompany\AdvertisingCompany\obj\Debug\netcoreapp2.0\AdvertisingCompany.AssemblyInfoInputs.cache
+D:\GSTU\kurs_3\semestr_5\РПБДИС\kursach\AdvertisingCompany\AdvertisingCompany\obj\Debug\netcoreapp2.0\AdvertisingCompany.AssemblyInfo.cs
+D:\GSTU\kurs_3\semestr_5\РПБДИС\kursach\AdvertisingCompany\AdvertisingCompany\obj\Debug\netcoreapp2.0\AdvertisingCompany.dll
+D:\GSTU\kurs_3\semestr_5\РПБДИС\kursach\AdvertisingCompany\AdvertisingCompany\obj\Debug\netcoreapp2.0\AdvertisingCompany.pdb
