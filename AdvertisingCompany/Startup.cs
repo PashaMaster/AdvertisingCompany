@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AdvertisingCompany.AdminFolder.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using AdvertisingCompany.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace AdvertisingCompany
 {
@@ -25,6 +27,14 @@ namespace AdvertisingCompany
         {
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<OrderContext>(options => options.UseSqlServer(connection));
+
+            string connectionadmin = Configuration.GetConnectionString("DefaultConnectionAdmin");
+            services.AddDbContext<AdminContext>(options => options.UseSqlServer(connectionadmin));
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+               .AddCookie(options => //CookieAuthenticationOptions
+                {
+                   options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
+               });
 
             services.AddMvc();
         }
@@ -52,5 +62,7 @@ namespace AdvertisingCompany
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
+
+
     }
 }
