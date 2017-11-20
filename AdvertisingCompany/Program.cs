@@ -13,7 +13,7 @@ namespace AdvertisingCompany
     {
         public static void Main(string[] args)
         {
-            var host = BuildWebHost(args);
+            /*var host = BuildWebHost(args);
 
             using (var scope = host.Services.CreateScope())
             {
@@ -30,7 +30,8 @@ namespace AdvertisingCompany
                 }
             }
 
-            host.Run();
+            host.Run();*/
+            BuildWebHost(args).Run();
         }
 
         public static IWebHost BuildWebHost(string[] args) =>

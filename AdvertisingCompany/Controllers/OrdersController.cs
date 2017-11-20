@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AdvertisingCompany.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AdvertisingCompany.Controllers
 {
+    [Authorize]
     public class OrdersController : Controller
     {
         private readonly OrderContext _context;

@@ -8,18 +8,18 @@ using AdvertisingCompany.AdminFolder.Models;
 
 namespace AdvertisingCompany.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
-        [Authorize]
+        
         public IActionResult Index()
         {
-            return Content(User.Identity.Name);
+            return View();
         }
 
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
-
             return View();
         }
 

@@ -13170,11 +13170,11 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "d:\\GSTU\\kurs_3\\semestr_5\\РПБДИС\\kursach\\AdvertisingCompany\\AdvertisingCompany\\AdvertisingCompany.csproj",
+      "projectUniqueName": "D:\\GSTU\\kurs_3\\semestr_5\\РПБДИС\\kursach\\AdvertisingCompany\\AdvertisingCompany\\AdvertisingCompany.csproj",
       "projectName": "AdvertisingCompany",
-      "projectPath": "d:\\GSTU\\kurs_3\\semestr_5\\РПБДИС\\kursach\\AdvertisingCompany\\AdvertisingCompany\\AdvertisingCompany.csproj",
+      "projectPath": "D:\\GSTU\\kurs_3\\semestr_5\\РПБДИС\\kursach\\AdvertisingCompany\\AdvertisingCompany\\AdvertisingCompany.csproj",
       "packagesPath": "C:\\Users\\Compaq\\.nuget\\packages\\",
-      "outputPath": "d:\\GSTU\\kurs_3\\semestr_5\\РПБДИС\\kursach\\AdvertisingCompany\\AdvertisingCompany\\obj\\",
+      "outputPath": "D:\\GSTU\\kurs_3\\semestr_5\\РПБДИС\\kursach\\AdvertisingCompany\\AdvertisingCompany\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
