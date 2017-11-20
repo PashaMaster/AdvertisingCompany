@@ -18,9 +18,21 @@ namespace AdvertisingCompany.Controllers
         }
 
         // GET: Clients
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page=1)
         {
-            return View(await _context.Clients.ToListAsync());
+            int pageSize = 10;   // количество элементов на странице
+
+            var source = _context.Clients.ToList();
+            var count = source.Count();
+            var items = source.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+
+            PageViewModel pageViewModel = new PageViewModel(count, page, pageSize);
+            IndexViewModel viewModel = new IndexViewModel
+            {
+                PageViewModel = pageViewModel,
+                Clients = items
+            };
+            return View(viewModel);
         }
 
         // GET: Clients/Details/5
