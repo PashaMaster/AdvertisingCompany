@@ -1,4 +1,12 @@
 ﻿@{
+    if (User.Identity.IsAuthenticated)
+    {
+        Layout = "_Layout";
+    }
+    else
+    {
+        Layout = "_Layin";
+    }
     ViewData["Title"] = "About";
 }
 <h2>@ViewData["Title"]</h2>

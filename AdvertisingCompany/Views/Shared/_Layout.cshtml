@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - AdvertisingCompany</title>
+    <title>@ViewData["Title"] - Advertising Company</title>
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -26,10 +26,10 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">AdvertisingCompany</a>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Advertising Company</a>
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav navbar-right">
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
                     <li><a asp-area="" asp-controller="Orders" asp-action="Index">Order</a></li>
@@ -38,7 +38,7 @@
                     <li><a asp-area="" asp-controller="Clients" asp-action="Index">Client</a></li>
                     <li><a asp-area="" asp-controller="ResponsibleOfficers" asp-action="Index">ResponsibleOfficer</a></li>
                     <li><a asp-area="" asp-controller="TypeAdvertisings" asp-action="Index">TypeAdvertising</a></li>
-
+                    <li><a asp-area="" asp-controller="Account" asp-action="Logout">Exit</a></li>
                 </ul>
             </div>
         </div>
@@ -47,7 +47,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; 2017 - AdvertisingCompany</p>
+            <p>&copy; 2017 - Advertising Company</p>
         </footer>
     </div>
 

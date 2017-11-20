@@ -1,5 +1,13 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    if (User.Identity.IsAuthenticated)
+    {
+        Layout = "_Layout";
+    }
+    else
+    {
+        Layout = "_Layin";
+    }
 }
 
 <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">

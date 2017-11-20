@@ -87,8 +87,9 @@ namespace AdvertisingCompany.Controllers
 
         public async Task<IActionResult> Logout()
         {
-            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            return RedirectToAction("Login", "Account");
+            await HttpContext.SignOutAsync();
+            return RedirectToAction(nameof(HomeController.Index), "Home");
         }
+
     }
 }
