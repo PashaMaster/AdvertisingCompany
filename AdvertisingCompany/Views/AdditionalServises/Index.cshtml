@@ -1,9 +1,10 @@
-﻿@model IEnumerable<AdvertisingCompany.Models.AdditionalServise>
-
+﻿@using AdvertisingCompany.Models
+@model IndexViewModel
 @{
     Layout = "_Layout";
     ViewData["Title"] = "Index";
 }
+
 
 <h2>Index</h2>
 
@@ -14,16 +15,16 @@
     <thead>
         <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.NameAdditionalServise)
+                    Name Additional Servise
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.DiscriptionAdditionalServise)
+                    Discription Additional Servise
                 </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model.AdditionalServises) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.NameAdditionalServise)
@@ -40,3 +41,21 @@
 }
     </tbody>
 </table>
+@if (Model.PageViewModel.HasPreviousPage)
+{
+    <a asp-action="Index"
+       asp-route-page="@(Model.PageViewModel.PageNumber - 1)"
+       class="btn btn-default btn">
+        <i class="glyphicon glyphicon-chevron-left"></i>
+        Назад
+    </a>
+}
+@if (Model.PageViewModel.HasNextPage)
+{
+    <a asp-action="Index"
+       asp-route-page="@(Model.PageViewModel.PageNumber + 1)"
+       class="btn btn-default btn">
+        Вперед
+        <i class="glyphicon glyphicon-chevron-right"></i>
+    </a>
+}

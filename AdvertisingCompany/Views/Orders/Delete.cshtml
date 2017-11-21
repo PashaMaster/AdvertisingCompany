@@ -52,13 +52,19 @@
             @Html.DisplayNameFor(model => model.Client)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Client.ClientID)
+            @Html.DisplayFor(model => model.Client.NameClient)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.ResponsibleOfficers)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.ResponsibleOfficers.ResponsibleOfficerID)
+            @Html.DisplayFor(model => model.ResponsibleOfficers.NameResponsibleOfficer)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Location)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Location.NameLocation)
         </dd>
     </dl>
     

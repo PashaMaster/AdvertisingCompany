@@ -21,12 +21,23 @@ namespace AdvertisingCompany.Controllers
         }
 
         // GET: Orders
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page = 1)
         {
-            var orderContext = _context.Orders.Include(o => o.Client).Include(o => o.ResponsibleOfficers);
-            return View(await orderContext.ToListAsync());
-        }
+            int pageSize = 10;   // количество элементов на странице
 
+            var source = _context.Orders.Include(o => o.Client).Include(o => o.ResponsibleOfficers).Include(o=> o.Location).ToList();
+            var count = source.Count();
+            var items = source.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+
+            PageViewModel pageViewModel = new PageViewModel(count, page, pageSize);
+            IndexViewModel viewModel = new IndexViewModel
+            {
+                PageViewModel = pageViewModel,
+                Orders = items
+            };
+            return View(viewModel);
+        }
+        
         // GET: Orders/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -38,6 +49,7 @@ namespace AdvertisingCompany.Controllers
             var order = await _context.Orders
                 .Include(o => o.Client)
                 .Include(o => o.ResponsibleOfficers)
+                .Include(o => o.Location)
                 .SingleOrDefaultAsync(m => m.OrderID == id);
             if (order == null)
             {
@@ -50,8 +62,9 @@ namespace AdvertisingCompany.Controllers
         // GET: Orders/Create
         public IActionResult Create()
         {
-            ViewData["ClientID"] = new SelectList(_context.Clients, "ClientID", "ClientID");
-            ViewData["ResponsibleOfficerID"] = new SelectList(_context.ResponsibleOfficers, "ResponsibleOfficerID", "ResponsibleOfficerID");
+            ViewData["ClientID"] = new SelectList(_context.Clients, "ClientID", "NameClient");
+            ViewData["ResponsibleOfficerID"] = new SelectList(_context.ResponsibleOfficers, "ResponsibleOfficerID", "NameResponsibleOfficer");
+            ViewData["LocationID"] = new SelectList(_context.Locations, "LocationID", "NameLocation");
             return View();
         }
 
@@ -68,8 +81,9 @@ namespace AdvertisingCompany.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ClientID"] = new SelectList(_context.Clients, "ClientID", "ClientID", order.ClientID);
-            ViewData["ResponsibleOfficerID"] = new SelectList(_context.ResponsibleOfficers, "ResponsibleOfficerID", "ResponsibleOfficerID", order.ResponsibleOfficerID);
+            ViewData["ClientID"] = new SelectList(_context.Clients, "ClientID", "NameClient", order.ClientID);
+            ViewData["ResponsibleOfficerID"] = new SelectList(_context.ResponsibleOfficers, "ResponsibleOfficerID", "NameResponsibleOfficer", order.ResponsibleOfficerID);
+            ViewData["LocationID"] = new SelectList(_context.Locations, "LocationID", "NameLocation",order.LocationID);
             return View(order);
         }
 
@@ -86,8 +100,9 @@ namespace AdvertisingCompany.Controllers
             {
                 return NotFound();
             }
-            ViewData["ClientID"] = new SelectList(_context.Clients, "ClientID", "ClientID", order.ClientID);
-            ViewData["ResponsibleOfficerID"] = new SelectList(_context.ResponsibleOfficers, "ResponsibleOfficerID", "ResponsibleOfficerID", order.ResponsibleOfficerID);
+            ViewData["ClientID"] = new SelectList(_context.Clients, "ClientID", "NameClient", order.ClientID);
+            ViewData["ResponsibleOfficerID"] = new SelectList(_context.ResponsibleOfficers, "ResponsibleOfficerID", "NameResponsibleOfficer", order.ResponsibleOfficerID);
+            ViewData["LocationID"] = new SelectList(_context.Locations, "LocationID", "NameLocation", order.LocationID);
             return View(order);
         }
 
@@ -123,8 +138,9 @@ namespace AdvertisingCompany.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ClientID"] = new SelectList(_context.Clients, "ClientID", "ClientID", order.ClientID);
-            ViewData["ResponsibleOfficerID"] = new SelectList(_context.ResponsibleOfficers, "ResponsibleOfficerID", "ResponsibleOfficerID", order.ResponsibleOfficerID);
+            ViewData["ClientID"] = new SelectList(_context.Clients, "ClientID", "NameClient", order.ClientID);
+            ViewData["ResponsibleOfficerID"] = new SelectList(_context.ResponsibleOfficers, "ResponsibleOfficerID", "NameResponsibleOfficer", order.ResponsibleOfficerID);
+            ViewData["LocationID"] = new SelectList(_context.Locations, "LocationID", "NameLocation", order.LocationID);
             return View(order);
         }
 
@@ -139,6 +155,7 @@ namespace AdvertisingCompany.Controllers
             var order = await _context.Orders
                 .Include(o => o.Client)
                 .Include(o => o.ResponsibleOfficers)
+                .Include(o => o.Location)
                 .SingleOrDefaultAsync(m => m.OrderID == id);
             if (order == null)
             {

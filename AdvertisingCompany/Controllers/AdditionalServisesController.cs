@@ -18,9 +18,21 @@ namespace AdvertisingCompany.Controllers
         }
 
         // GET: AdditionalServises
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page = 1)
         {
-            return View(await _context.AdditionalServises.ToListAsync());
+            int pageSize = 10;   // количество элементов на странице
+
+            var source = _context.AdditionalServises.ToList();
+            var count = source.Count();
+            var items = source.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+
+            PageViewModel pageViewModel = new PageViewModel(count, page, pageSize);
+            IndexViewModel viewModel = new IndexViewModel
+            {
+                PageViewModel = pageViewModel,
+                AdditionalServises = items
+            };
+            return View(viewModel);
         }
 
         // GET: AdditionalServises/Details/5

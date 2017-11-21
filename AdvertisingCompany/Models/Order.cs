@@ -19,5 +19,6 @@ namespace AdvertisingCompany.Models
         public int ResponsibleOfficerID { get; set; }
         public virtual Client Client { get; set; }
         public virtual ResponsibleOfficer ResponsibleOfficers { get; set; }
+        public virtual Location Location { get; set; }
     }
 }

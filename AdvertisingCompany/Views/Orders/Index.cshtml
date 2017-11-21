@@ -1,5 +1,5 @@
-﻿@model IEnumerable<AdvertisingCompany.Models.Order>
-
+﻿@using AdvertisingCompany.Models
+@model IndexViewModel
 @{
     Layout = "_Layout";
     ViewData["Title"] = "Index";
@@ -14,34 +14,37 @@
     <thead>
         <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.Date)
+                   Date
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.DateOfBegin)
+                    Date of begin
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.DateOfEnd)
+                    Date of end
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Servise)
+                    Servise
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Price)
+                    Price
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.PaymentNote)
+                    Payment note
                 </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Client)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ResponsibleOfficers)
-            </th>
+                <th>
+                    Client
+                </th>
+                <th>
+                    Responsible officer
+                </th>
+                <th>
+                    Location name
+                </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model.Orders) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Date)
@@ -62,10 +65,13 @@
                 @Html.DisplayFor(modelItem => item.PaymentNote)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Client.ClientID)
+                @Html.DisplayFor(modelItem => item.Client.NameClient)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ResponsibleOfficers.ResponsibleOfficerID)
+                @Html.DisplayFor(modelItem => item.ResponsibleOfficers.NameResponsibleOfficer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location.NameLocation)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.OrderID">Edit</a> |
@@ -76,3 +82,21 @@
 }
     </tbody>
 </table>
+@if (Model.PageViewModel.HasPreviousPage)
+{
+    <a asp-action="Index"
+       asp-route-page="@(Model.PageViewModel.PageNumber - 1)"
+       class="btn btn-default btn">
+        <i class="glyphicon glyphicon-chevron-left"></i>
+        Назад
+    </a>
+}
+@if (Model.PageViewModel.HasNextPage)
+{
+    <a asp-action="Index"
+       asp-route-page="@(Model.PageViewModel.PageNumber + 1)"
+       class="btn btn-default btn">
+        Вперед
+        <i class="glyphicon glyphicon-chevron-right"></i>
+    </a>
+}

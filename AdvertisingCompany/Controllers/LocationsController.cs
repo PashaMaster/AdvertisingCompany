@@ -21,12 +21,26 @@ namespace AdvertisingCompany.Controllers
         }
 
         // GET: Locations
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page = 1)
         {
-            var orderContext = _context.Locations.Include(l => l.AdditionalServise).Include(l => l.TypeAdvertising);
-            return View(await orderContext.ToListAsync());
-        }
+            int pageSize = 10;   // количество элементов на странице
 
+            var source = _context.Locations
+                .Include(l => l.AdditionalServise)
+                .Include(l => l.TypeAdvertising)
+                .ToList();
+            var count = source.Count();
+            var items = source.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+
+            PageViewModel pageViewModel = new PageViewModel(count, page, pageSize);
+            IndexViewModel viewModel = new IndexViewModel
+            {
+                PageViewModel = pageViewModel,
+                Locations = items
+            };
+            return View(viewModel);
+        }
+        
         // GET: Locations/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -50,8 +64,8 @@ namespace AdvertisingCompany.Controllers
         // GET: Locations/Create
         public IActionResult Create()
         {
-            ViewData["AdditionalServiseID"] = new SelectList(_context.AdditionalServises, "AdditionalServiseID", "AdditionalServiseID");
-            ViewData["TypeAdvertisingID"] = new SelectList(_context.TypeAdvertisings, "TypeAdvertisingID", "TypeAdvertisingID");
+            ViewData["AdditionalServiseID"] = new SelectList(_context.AdditionalServises, "AdditionalServiseID", "NameAdditionalServise");
+            ViewData["TypeAdvertisingID"] = new SelectList(_context.TypeAdvertisings, "TypeAdvertisingID", "NameTypeAdvertising");
             return View();
         }
 
@@ -68,8 +82,8 @@ namespace AdvertisingCompany.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AdditionalServiseID"] = new SelectList(_context.AdditionalServises, "AdditionalServiseID", "AdditionalServiseID", location.AdditionalServiseID);
-            ViewData["TypeAdvertisingID"] = new SelectList(_context.TypeAdvertisings, "TypeAdvertisingID", "TypeAdvertisingID", location.TypeAdvertisingID);
+            ViewData["AdditionalServiseID"] = new SelectList(_context.AdditionalServises, "AdditionalServiseID", "NameAdditionalServise", location.AdditionalServiseID);
+            ViewData["TypeAdvertisingID"] = new SelectList(_context.TypeAdvertisings, "TypeAdvertisingID", "NameTypeAdvertising", location.TypeAdvertisingID);
             return View(location);
         }
 
@@ -86,8 +100,8 @@ namespace AdvertisingCompany.Controllers
             {
                 return NotFound();
             }
-            ViewData["AdditionalServiseID"] = new SelectList(_context.AdditionalServises, "AdditionalServiseID", "AdditionalServiseID", location.AdditionalServiseID);
-            ViewData["TypeAdvertisingID"] = new SelectList(_context.TypeAdvertisings, "TypeAdvertisingID", "TypeAdvertisingID", location.TypeAdvertisingID);
+            ViewData["AdditionalServiseID"] = new SelectList(_context.AdditionalServises, "AdditionalServiseID", "NameAdditionalServise", location.AdditionalServiseID);
+            ViewData["TypeAdvertisingID"] = new SelectList(_context.TypeAdvertisings, "TypeAdvertisingID", "NameTypeAdvertising", location.TypeAdvertisingID);
             return View(location);
         }
 
@@ -123,8 +137,8 @@ namespace AdvertisingCompany.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AdditionalServiseID"] = new SelectList(_context.AdditionalServises, "AdditionalServiseID", "AdditionalServiseID", location.AdditionalServiseID);
-            ViewData["TypeAdvertisingID"] = new SelectList(_context.TypeAdvertisings, "TypeAdvertisingID", "TypeAdvertisingID", location.TypeAdvertisingID);
+            ViewData["AdditionalServiseID"] = new SelectList(_context.AdditionalServises, "AdditionalServiseID", "NameAdditionalServise", location.AdditionalServiseID);
+            ViewData["TypeAdvertisingID"] = new SelectList(_context.TypeAdvertisings, "TypeAdvertisingID", "NameTypeAdvertising", location.TypeAdvertisingID);
             return View(location);
         }
 

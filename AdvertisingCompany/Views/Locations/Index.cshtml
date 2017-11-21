@@ -1,5 +1,5 @@
-﻿@model IEnumerable<AdvertisingCompany.Models.Location>
-
+﻿@using AdvertisingCompany.Models
+@model IndexViewModel
 @{
     Layout = "_Layout";
     ViewData["Title"] = "Index";
@@ -14,22 +14,22 @@
     <thead>
         <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.NameLocation)
+                    Name Location
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.LocationT)
+                    Location
                 </th>
             <th>
-                @Html.DisplayNameFor(model => model.AdditionalServise)
+                Additional Servise
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TypeAdvertising)
+                Type Advertising
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model.Locations) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.NameLocation)
@@ -38,10 +38,10 @@
                 @Html.DisplayFor(modelItem => item.LocationT)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.AdditionalServise.AdditionalServiseID)
+                @Html.DisplayFor(modelItem => item.AdditionalServise.NameAdditionalServise)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TypeAdvertising.TypeAdvertisingID)
+                @Html.DisplayFor(modelItem => item.TypeAdvertising.NameTypeAdvertising)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.LocationID">Edit</a> |
@@ -52,3 +52,21 @@
 }
     </tbody>
 </table>
+@if (Model.PageViewModel.HasPreviousPage)
+{
+    <a asp-action="Index"
+       asp-route-page="@(Model.PageViewModel.PageNumber - 1)"
+       class="btn btn-default btn">
+        <i class="glyphicon glyphicon-chevron-left"></i>
+        Назад
+    </a>
+}
+@if (Model.PageViewModel.HasNextPage)
+{
+    <a asp-action="Index"
+       asp-route-page="@(Model.PageViewModel.PageNumber + 1)"
+       class="btn btn-default btn">
+        Вперед
+        <i class="glyphicon glyphicon-chevron-right"></i>
+    </a>
+}

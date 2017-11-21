@@ -21,9 +21,21 @@ namespace AdvertisingCompany.Controllers
         }
 
         // GET: ResponsibleOfficers
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page = 1)
         {
-            return View(await _context.ResponsibleOfficers.ToListAsync());
+            int pageSize = 10;   // количество элементов на странице
+
+            var source = _context.ResponsibleOfficers.ToList();
+            var count = source.Count();
+            var items = source.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+
+            PageViewModel pageViewModel = new PageViewModel(count, page, pageSize);
+            IndexViewModel viewModel = new IndexViewModel
+            {
+                PageViewModel = pageViewModel,
+                ResponsibleOfficers = items
+            };
+            return View(viewModel);
         }
 
         // GET: ResponsibleOfficers/Details/5

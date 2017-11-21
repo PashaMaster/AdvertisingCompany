@@ -21,9 +21,21 @@ namespace AdvertisingCompany.Controllers
         }
 
         // GET: TypeAdvertisings
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page = 1)
         {
-            return View(await _context.TypeAdvertisings.ToListAsync());
+            int pageSize = 10;   // количество элементов на странице
+
+            var source = _context.TypeAdvertisings.ToList();
+            var count = source.Count();
+            var items = source.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+
+            PageViewModel pageViewModel = new PageViewModel(count, page, pageSize);
+            IndexViewModel viewModel = new IndexViewModel
+            {
+                PageViewModel = pageViewModel,
+                TypeAdvertisings = items
+            };
+            return View(viewModel);
         }
 
         // GET: TypeAdvertisings/Details/5
