@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using AdvertisingCompany.Models;
+using AdvertisingCompany.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 
 namespace AdvertisingCompany.Controllers
@@ -18,7 +19,7 @@ namespace AdvertisingCompany.Controllers
         }
 
         // GET: Clients
-        public async Task<IActionResult> Index(int page=1)
+        public async Task<IActionResult> Index(int page=1, SortState sortClient = SortState.NameClientAsc)
         {
             int pageSize = 10;   // количество элементов на странице
 
@@ -32,6 +33,9 @@ namespace AdvertisingCompany.Controllers
                 PageViewModel = pageViewModel,
                 Clients = items
             };
+
+            
+
             return View(viewModel);
         }
 

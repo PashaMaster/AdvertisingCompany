@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AdvertisingCompany.Models;
 using Microsoft.AspNetCore.Authorization;
+using AdvertisingCompany.ViewModels;
 
 namespace AdvertisingCompany.Controllers
 {
@@ -21,11 +22,35 @@ namespace AdvertisingCompany.Controllers
         }
 
         // GET: Orders
-        public async Task<IActionResult> Index(int page = 1)
+        public async Task<IActionResult> Index(int page = 1, SortState sortOrder = SortState.NameClientAsc)
         {
+            IQueryable<Order> orders = _context.Orders.Include(o => o.Client).Include(o => o.ResponsibleOfficers).Include(o => o.Location);
+
+            switch (sortOrder)
+            {
+                case SortState.NameClientDesc:
+                    orders = orders.OrderByDescending(s => s.Client.NameClient);
+                    break;
+                case SortState.PriceAsc:
+                    orders = orders.OrderBy(s => s.Price);
+                    break;
+                case SortState.PriceDesc:
+                    orders = orders.OrderByDescending(s => s.Price);
+                    break;
+                case SortState.DateAsc:
+                    orders = orders.OrderBy(s => s.DateOfBegin);
+                    break;
+                case SortState.DateDesc:
+                    orders = orders.OrderByDescending(s => s.DateOfBegin);
+                    break;
+                default:
+                    orders = orders.OrderBy(s => s.Client.NameClient);
+                    break;
+            }
+            
             int pageSize = 10;   // количество элементов на странице
 
-            var source = _context.Orders.Include(o => o.Client).Include(o => o.ResponsibleOfficers).Include(o=> o.Location).ToList();
+            var source = orders.ToList();
             var count = source.Count();
             var items = source.Skip((page - 1) * pageSize).Take(pageSize).ToList();
 
@@ -33,6 +58,7 @@ namespace AdvertisingCompany.Controllers
             IndexViewModel viewModel = new IndexViewModel
             {
                 PageViewModel = pageViewModel,
+                SortViewModel = new SortViewModel(sortOrder),
                 Orders = items
             };
             return View(viewModel);

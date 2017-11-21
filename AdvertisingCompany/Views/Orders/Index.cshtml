@@ -1,5 +1,8 @@
 ﻿@using AdvertisingCompany.Models
+@using AdvertisingCompany.ViewModels
 @model IndexViewModel
+<!--импортируем tag-хелперы проекта-->
+@addTagHelper "*, AdvertisingCompany"
 @{
     Layout = "_Layout";
     ViewData["Title"] = "Index";
@@ -17,7 +20,10 @@
                    Date
                 </th>
                 <th>
-                    Date of begin
+                    <sort-header action="Index" up="@Model.SortViewModel.Up"
+                                 current="@Model.SortViewModel.Current" property="@Model.SortViewModel.DateSort">
+                        Date of begin
+                    </sort-header>
                 </th>
                 <th>
                     Date of end
@@ -26,13 +32,19 @@
                     Servise
                 </th>
                 <th>
-                    Price
+                    <sort-header action="Index" up="@Model.SortViewModel.Up"
+                                                     current="@Model.SortViewModel.Current" property="@Model.SortViewModel.PriceSort">
+                        Price
+                    </sort-header>
                 </th>
                 <th>
                     Payment note
                 </th>
                 <th>
-                    Client
+                    <sort-header action="Index" up="@Model.SortViewModel.Up"
+                                 current="@Model.SortViewModel.Current" property="@Model.SortViewModel.NameClientSort">
+                        Client
+                    </sort-header>
                 </th>
                 <th>
                     Responsible officer
