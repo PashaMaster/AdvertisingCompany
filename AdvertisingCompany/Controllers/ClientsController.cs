@@ -19,7 +19,7 @@ namespace AdvertisingCompany.Controllers
         }
 
         // GET: Clients
-        public async Task<IActionResult> Index(int page=1, SortState sortClient = SortState.NameClientAsc)
+        public async Task<IActionResult> Index(int page=1)
         {
             int pageSize = 10;   // количество элементов на странице
 

@@ -1,0 +1,73 @@
+﻿@using AdvertisingCompany.Models
+@model IndexViewModel
+@{
+    ViewData["Title"] = "DataClientPaymentNote";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Data Client Payment Note</h2>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Client name
+            </th>
+            <th>
+                Price
+            </th>
+            <th>
+                Payment note
+            </th>              
+            <th>
+                Responsible officer
+            </th>
+            <th>
+                Responsible officer phone number
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Orders)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Client.NameClient)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaymentNote)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ResponsibleOfficers.NameResponsibleOfficer)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ResponsibleOfficers.PhoneNumber)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@if (Model.PageViewModel.HasPreviousPage)
+{
+    <a asp-action="DataClientPaymentNote"
+       asp-route-page="@(Model.PageViewModel.PageNumber - 1)"
+       class="btn btn-default btn">
+        <i class="glyphicon glyphicon-chevron-left"></i>
+        Назад
+    </a>
+}
+@if (Model.PageViewModel.HasNextPage)
+{
+    <a asp-action="DataClientPaymentNote"
+       asp-route-page="@(Model.PageViewModel.PageNumber + 1)"
+       class="btn btn-default btn">
+        Вперед
+        <i class="glyphicon glyphicon-chevron-right"></i>
+    </a>
+}
+

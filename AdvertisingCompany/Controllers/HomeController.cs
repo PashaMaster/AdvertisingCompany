@@ -1,10 +1,7 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using AdvertisingCompany.Models;
-using AdvertisingCompany.AdminFolder.Models;
-
 
 namespace AdvertisingCompany.Controllers
 {
@@ -20,14 +17,14 @@ namespace AdvertisingCompany.Controllers
         [AllowAnonymous]
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
+            ViewData["Message"] = "Здесь представлена информация о нас";
             return View();
         }
 
         [AllowAnonymous]
         public IActionResult Contact()
         {
-            ViewData["Message"] = "Your contact page.";
+            ViewData["Message"] = "Здесь представлены наши контакты";
             return View();
         }
 

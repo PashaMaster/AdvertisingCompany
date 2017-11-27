@@ -1,0 +1,63 @@
+﻿
+@using AdvertisingCompany.Models
+@model IndexViewModel
+@{
+    ViewData["Title"] = "DataClient";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Data Client</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Name client
+            </th>
+            <th>
+                Adress
+            </th>
+            <th>
+                Phone number
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Client item in Model.Clients)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => item.NameClient)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.Adress)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => @item.PhoneNumber)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ClientID">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.ClientID">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ClientID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@if (Model.PageViewModel.HasPreviousPage)
+{
+    <a asp-action="DataClient"
+       asp-route-page="@(Model.PageViewModel.PageNumber - 1)"
+       class="btn btn-default btn">
+        <i class="glyphicon glyphicon-chevron-left"></i>
+        Назад
+    </a>
+}
+@if (Model.PageViewModel.HasNextPage)
+{
+    <a asp-action="DataClient"
+       asp-route-page="@(Model.PageViewModel.PageNumber + 1)"
+       class="btn btn-default btn">
+        Вперед
+        <i class="glyphicon glyphicon-chevron-right"></i>
+    </a>
+}

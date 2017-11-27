@@ -1,7 +1,6 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using AdvertisingCompany.ViewModels;
 
 namespace AdvertisingCompany.Models
 {
@@ -16,5 +15,6 @@ namespace AdvertisingCompany.Models
 
         public PageViewModel PageViewModel { get; set; }
         public SortViewModel SortViewModel { get; set; }
+        public FiltrViewModel FiltrViewModel { get; set; }
     }
 }
