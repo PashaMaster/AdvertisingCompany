@@ -1,0 +1,114 @@
+﻿@using AdvertisingCompany.Models
+@using AdvertisingCompany.ViewModels
+@model IndexViewModel
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Заказы";
+}
+
+<h2>Список заказов</h2>
+<form method="get">
+    <div class="form-horizontal form-group">
+        <label class="control-label">Имя клиента: </label>
+        @Html.TextBox("nameClient", Model.FiltrViewModel.NameClient, htmlAttributes: new { @class = "form-control" })
+
+        <label class="control-label">Имя локации: </label>
+        @Html.TextBox("nameLocation", Model.FiltrViewModel.NameLocation, htmlAttributes: new { @class = "form-control" })
+
+        <label class="control-label">Сервис: </label>
+        @Html.TextBox("service", Model.FiltrViewModel.NameService, htmlAttributes: new { @class = "form-control" })
+
+        <label class="control-label">Отметка об оплате: </label>
+        @Html.TextBox("paymentNote", Model.FiltrViewModel.PaymentNote, htmlAttributes: new { @class = "form-control" })
+        <br>
+        <input type="submit" value="Фильтр" class="btn btn-default" />
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                 Дата начала
+            </th>
+            <th>
+                Дата окончания
+            </th>
+            <th>
+                Сервис
+            </th>
+            <th>
+                Цена
+            </th>
+            <th>
+                Отметка
+            </th>
+            <th>
+                Клиент
+            </th>
+            <th>
+                Сотрудник
+            </th>
+            <th>
+                Имя локации
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Orders)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateOfBegin)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateOfEnd)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Servise)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaymentNote)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Client.NameClient)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ResponsibleOfficers.NameResponsibleOfficer)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location.NameLocation)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@if (Model.PageViewModel.HasPreviousPage)
+{
+    <a asp-action="AllOrders"
+       asp-route-page="@(Model.PageViewModel.PageNumber - 1)"
+       asp-route-nameClient="@(Model.FiltrViewModel.NameClient)"
+       asp-route-nameLocation="@(Model.FiltrViewModel.NameLocation)"
+       asp-route-service="@(Model.FiltrViewModel.NameService)"
+       asp-route-paymentNote="@(Model.FiltrViewModel.PaymentNote)"
+       class="btn btn-default btn">
+        <i class="glyphicon glyphicon-chevron-left"></i>
+        Назад
+    </a>
+}
+@if (Model.PageViewModel.HasNextPage)
+{
+    <a asp-action="AllOrders"
+       asp-route-page="@(Model.PageViewModel.PageNumber + 1)"
+       asp-route-nameClient="@(Model.FiltrViewModel.NameClient)"
+       asp-route-nameLocation="@(Model.FiltrViewModel.NameLocation)"
+       asp-route-service="@(Model.FiltrViewModel.NameService)"
+       asp-route-paymentNote="@(Model.FiltrViewModel.PaymentNote)"
+       class="btn btn-default btn">
+        Вперед
+        <i class="glyphicon glyphicon-chevron-right"></i>
+    </a>
+}

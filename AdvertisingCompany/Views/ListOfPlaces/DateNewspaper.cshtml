@@ -1,38 +1,37 @@
-﻿
-@using AdvertisingCompany.Models
+﻿@using AdvertisingCompany.Models
 @model IndexViewModel
 @{
-    ViewData["Title"] = "Данные о клиентах";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "_Layout";
+    ViewData["Title"] = "Данные о прессе";
 }
-
-<h2>Данные о клиентах</h2>
+<h2>Данные о рекламе, размещенной в газетах за текущий месяц</h2>
+<br>
 <table class="table">
     <thead>
         <tr>
             <th>
-                Имя
+                Дата размещения
             </th>
             <th>
-                Адрес
+                Локация
             </th>
             <th>
-                Номер телефона
+                Место размещения
             </th>
         </tr>
     </thead>
     <tbody>
-        @foreach (Client item in Model.Clients)
+        @foreach (var item in Model.Results)
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(model => item.NameClient)
+                    @Html.DisplayFor(modelItem => item.Date)
                 </td>
                 <td>
-                    @Html.DisplayFor(model => item.Adress)
+                    @Html.DisplayFor(modelItem => item.Locationc)
                 </td>
                 <td>
-                    @Html.DisplayFor(model => @item.PhoneNumber)
+                    @Html.DisplayFor(modelItem => item.Place)
                 </td>
             </tr>
         }
@@ -40,7 +39,7 @@
 </table>
 @if (Model.PageViewModel.HasPreviousPage)
 {
-    <a asp-action="DataClient"
+    <a asp-action="Index"
        asp-route-page="@(Model.PageViewModel.PageNumber - 1)"
        class="btn btn-default btn">
         <i class="glyphicon glyphicon-chevron-left"></i>
@@ -49,7 +48,7 @@
 }
 @if (Model.PageViewModel.HasNextPage)
 {
-    <a asp-action="DataClient"
+    <a asp-action="Index"
        asp-route-page="@(Model.PageViewModel.PageNumber + 1)"
        class="btn btn-default btn">
         Вперед

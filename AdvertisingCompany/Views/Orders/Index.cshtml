@@ -5,52 +5,43 @@
 @addTagHelper "*, AdvertisingCompany"
 @{
     Layout = "_Layout";
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Заказы";
 }
 
-<h2>Index</h2>
+<h2>Заказы</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Добавить запись</a>
 </p>
 <table class="table">
     <thead>
         <tr>
                 <th>
-                   Date
+                    <a asp-action="Index"
+                       asp-route-sortOrder="@(Model.SortViewModel.DateSort)">Дата начала</a>
                 </th>
                 <th>
-                    <sort-header action="Index" up="@Model.SortViewModel.Up"
-                                 current="@Model.SortViewModel.Current" property="@Model.SortViewModel.DateSort">
-                        Date of begin
-                    </sort-header>
+                    Дата окончания
                 </th>
                 <th>
-                    Date of end
+                    Сервис
                 </th>
                 <th>
-                    Servise
+                    <a asp-action="Index"
+                       asp-route-sortOrder="@(Model.SortViewModel.PriceSort)">Цена</a>
                 </th>
                 <th>
-                    <sort-header action="Index" up="@Model.SortViewModel.Up"
-                                                     current="@Model.SortViewModel.Current" property="@Model.SortViewModel.PriceSort">
-                        Price
-                    </sort-header>
+                    Отметка
                 </th>
                 <th>
-                    Payment note
+                    <a asp-action="Index"
+                       asp-route-sortOrder="@(Model.SortViewModel.NameClientSort)">Клиент</a>
                 </th>
                 <th>
-                    <sort-header action="Index" up="@Model.SortViewModel.Up"
-                                 current="@Model.SortViewModel.Current" property="@Model.SortViewModel.NameClientSort">
-                        Client
-                    </sort-header>
+                    Сотрудник
                 </th>
                 <th>
-                    Responsible officer
-                </th>
-                <th>
-                    Location name
+                    Имя локации
                 </th>
             <th></th>
         </tr>
@@ -58,9 +49,6 @@
     <tbody>
 @foreach (var item in Model.Orders) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Date)
-            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DateOfBegin)
             </td>
@@ -86,9 +74,9 @@
                 @Html.DisplayFor(modelItem => item.Location.NameLocation)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.OrderID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.OrderID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.OrderID">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.OrderID">Изменить</a> |
+                <a asp-action="Details" asp-route-id="@item.OrderID">Подробно</a> |
+                <a asp-action="Delete" asp-route-id="@item.OrderID">Удалить</a>
             </td>
         </tr>
 }
@@ -98,6 +86,7 @@
 {
     <a asp-action="Index"
        asp-route-page="@(Model.PageViewModel.PageNumber - 1)"
+       asp-route-sortOrder="@(Model.SortViewModel.Current)"
        class="btn btn-default btn">
         <i class="glyphicon glyphicon-chevron-left"></i>
         Назад
@@ -107,6 +96,7 @@
 {
     <a asp-action="Index"
        asp-route-page="@(Model.PageViewModel.PageNumber + 1)"
+       asp-route-sortOrder="@(Model.SortViewModel.Current)"
        class="btn btn-default btn">
         Вперед
         <i class="glyphicon glyphicon-chevron-right"></i>

@@ -68,6 +68,18 @@
                             <li><a asp-area="" asp-controller="PersonnelDepartment" asp-action="DataClientPaymentNote">Данные о выполненых заказах</a></li>
                         </ul>
                     </li>
+                    <li class="dropdown">
+                        <a id="drop1" href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Список мест
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a asp-area="" asp-controller="ListOfPlaces" asp-action="DatePlaces">Данные о местах расположения</a></li>
+                            <li class="divider"></li>
+                            <li><a asp-area="" asp-controller="ListOfPlaces" asp-action="DateNewspaper">Данные о рекламе в газетах</a></li>
+                        </ul>
+                    </li>
+                    <li><a asp-area="" asp-controller="ListOrders" asp-action="AllOrders">Список заказов</a></li>
                     <li><a asp-area="" asp-controller="Account" asp-action="Logout">Выход</a></li>
                 </ul>
             </div>

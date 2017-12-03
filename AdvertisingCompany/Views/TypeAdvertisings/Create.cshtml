@@ -2,12 +2,12 @@
 
 @{
     Layout = "_Layout";
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Тип рекламы - добавление";
 }
 
-<h2>Create</h2>
+<h2>Создание новой записи</h2>
 
-<h4>TypeAdvertising</h4>
+<h4>Тип рекламы</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -24,14 +24,14 @@
                 <span asp-validation-for="DiscriptionTypeAdvertising" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Создать" class="btn btn-default" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Вернуться к списку</a>
 </div>
 
 @section Scripts {

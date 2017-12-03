@@ -2,22 +2,22 @@
 @model IndexViewModel
 @{
     Layout = "_Layout";
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Тип рекламы";
 }
 
-<h2>Index</h2>
+<h2>Тип рекламы</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Добавить запись</a>
 </p>
 <table class="table">
     <thead>
         <tr>
                 <th>
-                    Name Type Advertising
+                    Наименование типа рекламы
                 </th>
                 <th>
-                    Discription Type Advertising
+                    Описание типа рекламы
                 </th>
             <th></th>
         </tr>
@@ -32,9 +32,9 @@
                 @Html.DisplayFor(modelItem => item.DiscriptionTypeAdvertising)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.TypeAdvertisingID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.TypeAdvertisingID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.TypeAdvertisingID">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.TypeAdvertisingID">Изменить</a> |
+                <a asp-action="Details" asp-route-id="@item.TypeAdvertisingID">Подробно</a> |
+                <a asp-action="Delete" asp-route-id="@item.TypeAdvertisingID">Удалить</a>
             </td>
         </tr>
 }

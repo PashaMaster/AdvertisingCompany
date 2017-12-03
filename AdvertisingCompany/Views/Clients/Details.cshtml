@@ -3,13 +3,13 @@
 
 @{
     Layout = "_Layout";
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Клиенты - подробно";
 }
 
-<h2>Details</h2>
+<h2>Подробно</h2>
 
 <div>
-    <h4>Client</h4>
+    <h4>Клиенты</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -33,6 +33,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.ClientID">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model.ClientID">Изменить</a> |
+    <a asp-action="Index">Вернуться к списку</a>
 </div>

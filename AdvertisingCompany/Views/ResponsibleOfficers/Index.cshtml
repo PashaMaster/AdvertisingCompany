@@ -2,25 +2,25 @@
 @model IndexViewModel
 @{
     Layout = "_Layout";
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Сотрудники";
 }
 
-<h2>Index</h2>
+<h2>Сотрудники</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Добавить запись</a>
 </p>
 <table class="table">
     <thead>
         <tr>
                 <th>
-                   Name Responsible Officer
+                   Имя сотрудника
                 </th>
                 <th>
-                    Adress
+                    Адрес
                 </th>
                 <th>
-                    PhoneNumber
+                    Номер телефона
                 </th>
             <th></th>
         </tr>
@@ -38,9 +38,9 @@
                 @Html.DisplayFor(modelItem => item.PhoneNumber)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.ResponsibleOfficerID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ResponsibleOfficerID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ResponsibleOfficerID">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.ResponsibleOfficerID">Изменить</a> |
+                <a asp-action="Details" asp-route-id="@item.ResponsibleOfficerID">Подробно</a> |
+                <a asp-action="Delete" asp-route-id="@item.ResponsibleOfficerID">Удалить</a>
             </td>
         </tr>
 }

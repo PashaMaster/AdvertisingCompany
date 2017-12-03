@@ -1,31 +1,28 @@
 ﻿@using AdvertisingCompany.Models
 @model IndexViewModel
 @{
-    ViewData["Title"] = "DataClientPaymentNote";
+    ViewData["Title"] = "Данные о выполненых заказах";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Data Client Payment Note</h2>
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<h2>Данные о выполненых заказах</h2>
 <table class="table">
     <thead>
         <tr>
             <th>
-                Client name
+                Имя клиента
             </th>
             <th>
-                Price
+                Стоимость заказа
             </th>
             <th>
-                Payment note
+                Отметка об выполнении
             </th>              
             <th>
-                Responsible officer
+                Отвечающий сотрудник
             </th>
             <th>
-                Responsible officer phone number
+                Телефон сотрудника
             </th>
         </tr>
     </thead>

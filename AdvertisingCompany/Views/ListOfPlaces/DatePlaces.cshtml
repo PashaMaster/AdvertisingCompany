@@ -1,0 +1,52 @@
+﻿@using AdvertisingCompany.ViewModels
+@model IndexViewModel
+@{
+    ViewData["Title"] = "Данные о местах";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Сведения обо всех местах расположения</h2>
+<br>
+<table class="table">
+    <tr>
+        <th>Название</th>
+        <th>Локация</th>
+        <th>Тип рекламы</th>
+        <th>Дополнительный сервис</th>
+    </tr>
+
+    @foreach (var item in Model.Locations)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NameLocation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LocationT)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TypeAdvertising.NameTypeAdvertising)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdditionalServise.NameAdditionalServise)
+            </td>
+        </tr>
+    }
+</table>
+@if (Model.PageViewModel.HasPreviousPage)
+{
+    <a asp-action="DatePlaces"
+       asp-route-page="@(Model.PageViewModel.PageNumber - 1)"
+       class="btn btn-default btn">
+        <i class="glyphicon glyphicon-chevron-left"></i>
+        Назад
+    </a>
+}
+@if (Model.PageViewModel.HasNextPage)
+{
+    <a asp-action="DatePlaces"
+       asp-route-page="@(Model.PageViewModel.PageNumber + 1)"
+       class="btn btn-default btn">
+        Вперед
+        <i class="glyphicon glyphicon-chevron-right"></i>
+    </a>
+}

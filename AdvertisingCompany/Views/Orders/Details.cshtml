@@ -2,13 +2,13 @@
 
 @{
     Layout = "_Layout";
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Заказы - подробно";
 }
 
-<h2>Details</h2>
+<h2>Подробно</h2>
 
 <div>
-    <h4>Order</h4>
+    <h4>Заказы</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -48,19 +48,19 @@
             @Html.DisplayFor(model => model.PaymentNote)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Client)
+            @Html.DisplayNameFor(model => model.Client.NameClient)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Client.NameClient)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.ResponsibleOfficers)
+            @Html.DisplayNameFor(model => model.ResponsibleOfficers.NameResponsibleOfficer)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.ResponsibleOfficers.NameResponsibleOfficer)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Location)
+            @Html.DisplayNameFor(model => model.Location.NameLocation)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Location.NameLocation)
@@ -68,6 +68,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.OrderID">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model.OrderID">Изменить</a> |
+    <a asp-action="Index">Вернутся к списку</a>
 </div>

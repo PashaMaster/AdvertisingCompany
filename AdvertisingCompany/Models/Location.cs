@@ -2,13 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace AdvertisingCompany.Models
 {
     public class Location
     {
+        [Key]
+        [Display(Name = "Код локации")]
         public int LocationID { get; set; }
+        [Display(Name = "Название локации")]
         public string NameLocation { get; set; }
+        [Display(Name = "Локация")]
         public string LocationT { get; set; }
         public int TypeAdvertisingID { get; set; }
         public int AdditionalServiseID { get; set; }

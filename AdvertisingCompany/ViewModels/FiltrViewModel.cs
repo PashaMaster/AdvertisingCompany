@@ -6,15 +6,19 @@ namespace AdvertisingCompany.ViewModels
 {
     public class FiltrViewModel
     {
-        public IEnumerable<Order> orders { get; set; }
-        public SelectList Dates { get; set; }
-        public string Name { get; set; }
+        public IEnumerable<Order> Orders { get; set; }
+        public int PaymentNote { get; set; }
+        public string NameClient { get; set; }
+        public string NameLocation { get; set; }
+        public string NameService { get; set; }
 
-        public FiltrViewModel(IEnumerable<Order> orders, SelectList Dates, string Name)
+        public FiltrViewModel(IEnumerable<Order> Orders, int PaymentNote, string NameClient, string NameLocation, string Service)
         {
-            this.orders = orders;
-            this.Dates = Dates;
-            this.Name = Name;
+            this.Orders = Orders;
+            this.PaymentNote = PaymentNote;
+            this.NameClient = NameClient;
+            this.NameLocation = NameLocation;
+            this.NameService = NameService;
         }
     }
 }

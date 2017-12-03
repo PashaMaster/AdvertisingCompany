@@ -29,6 +29,7 @@ namespace AdvertisingCompany.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginModel model)
         {
+
             if (ModelState.IsValid)
             {
                 Admin admin = await db.Admins.FirstOrDefaultAsync(u => u.Email == model.Email && u.Password == model.Password);

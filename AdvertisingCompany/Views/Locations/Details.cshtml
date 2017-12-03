@@ -2,13 +2,13 @@
 
 @{
     Layout = "_Layout";
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Локации - подробно";
 }
 
-<h2>Details</h2>
+<h2>Подробно</h2>
 
 <div>
-    <h4>Location</h4>
+    <h4>Локации</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -24,13 +24,13 @@
             @Html.DisplayFor(model => model.LocationT)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.AdditionalServise)
+            @Html.DisplayNameFor(model => model.AdditionalServise.NameAdditionalServise)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.AdditionalServise.NameAdditionalServise)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.TypeAdvertising)
+            @Html.DisplayNameFor(model => model.TypeAdvertising.NameTypeAdvertising)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.TypeAdvertising.NameTypeAdvertising)
@@ -38,6 +38,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.LocationID">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model.LocationID">Изменить</a> |
+    <a asp-action="Index">Вернуться к списку</a>
 </div>

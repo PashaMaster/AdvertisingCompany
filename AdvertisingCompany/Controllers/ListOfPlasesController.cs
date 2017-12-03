@@ -11,50 +11,70 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 namespace AdvertisingCompany.Controllers
 {
     [Authorize]
-    public class ListOfPlasesController : Controller
+    public class ListOfPlacesController : Controller
     {
 
         private readonly OrderContext _context;
 
-        public ListOfPlasesController(OrderContext context)
+        public ListOfPlacesController(OrderContext context)
         {
             _context = context;
         }
-
-        public IActionResult DateNewspaper(DateTime? date, string name, int page = 1)
+                
+        public IActionResult DatePlaces(int page = 1)
         {
-            IQueryable<Order> orders = _context.Orders.Include(p => p.Client).Include(p => p.ResponsibleOfficers);
-            if (date != null)
-            {
-                orders = orders.Where(p => p.DateOfBegin == date);
-            }
-            if (!String.IsNullOrEmpty(name))
-            {
-                orders = orders.Where(p => p.Client.NameClient.Contains(name));
-            }
-
-            List<DateTime> dates = _context.Orders.Select(x => x.DateOfBegin).ToList();
-            
-            int pageSize = 15;   // количество элементов на странице
-
-            var source = orders.ToList();
+            IQueryable<Location> locations = _context.Locations.Include(p => p.AdditionalServise).Include(p => p.TypeAdvertising);
+            int pageSize = 15;  var source = locations.ToList();
             var count = source.Count();
             var items = source.Skip((page - 1) * pageSize).Take(pageSize).ToList();
-
             PageViewModel pageViewModel = new PageViewModel(count, page, pageSize);
-            FiltrViewModel filtrViewModel = new FiltrViewModel(items, new SelectList(dates), name);
-
             IndexViewModel viewModel = new IndexViewModel
             {
                 PageViewModel = pageViewModel,
-                FiltrViewModel = filtrViewModel,
-                Orders = items                
+                Locations = items
             };
 
             return View(viewModel);
         }
 
+    public IActionResult DateNewspaper (int page = 1)
+        {
+            var date = DateTime.Now;
+            IQueryable<Order> orders = _context.Orders
+                .Where(p => p.DateOfBegin.Month >=date.Month && p.DateOfBegin.Month< date.Month+1);
 
+            IQueryable<Location> locations = _context.Locations
+                .Include(p => p.AdditionalServise)
+                .Include(o => o.TypeAdvertising)
+                .Where(p => p.TypeAdvertising.NameTypeAdvertising == "Реклама в прессе");
+
+            var result = locations
+                .Join(orders, 
+                    p => p.LocationID, 
+                    t => t.LocationID,
+                    (p, t) => new
+                    {
+                        Date = t.DateOfBegin,
+                        Locationc = p.LocationT,
+                        Place = p.TypeAdvertising.NameTypeAdvertising
+                    });
+            List<Result> results = new List<Result>();
+            foreach (var item in result)
+            {
+                results.Add(new Result(item.Date, item.Locationc, item.Place));
+            }
+            int pageSize = 15;   
+            var source = results.ToList();
+            var count = source.Count();
+            var items = source.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+            PageViewModel pageViewModel = new PageViewModel(count, page, pageSize);
+            IndexViewModel viewModel = new IndexViewModel
+            {
+                PageViewModel = pageViewModel,
+                Results = items                
+            };
+            return View(viewModel);
+        }
 
     }
 }
