@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -23,8 +21,7 @@ namespace AdvertisingCompany.Controllers
         // GET: Locations
         public async Task<IActionResult> Index(int page = 1)
         {
-            int pageSize = 10;   // количество элементов на странице
-
+            int pageSize = 10;   
             var source = _context.Locations
                 .Include(l => l.AdditionalServise)
                 .Include(l => l.TypeAdvertising)

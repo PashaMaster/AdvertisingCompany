@@ -1,11 +1,9 @@
 ﻿using System;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
 using AdvertisingCompany.Models;
-using AdvertisingCompany.AdminFolder.Models;
 
 namespace AdvertisingCompany
 {

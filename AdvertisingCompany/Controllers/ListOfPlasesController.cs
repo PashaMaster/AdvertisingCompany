@@ -6,7 +6,6 @@ using Microsoft.EntityFrameworkCore;
 using AdvertisingCompany.Models;
 using AdvertisingCompany.ViewModels;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AdvertisingCompany.Controllers
 {
